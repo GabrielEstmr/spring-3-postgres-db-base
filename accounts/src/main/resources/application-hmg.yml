@@ -1,0 +1,78 @@
+logging:
+  level:
+    root: 'INFO'
+    com.challenger: 'DEBUG'
+    org.springframework.data.mongodb.core.MongoTemplate: 'DEBUG'
+
+spring:
+  datasource:
+    platform: postgres
+    postgres-host: ${POSTGRES_HOST}
+    url: jdbc:postgresql://${spring.datasource.postgres-host}:5432/app_account_challenger
+    name: app_account_challenger
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+    continue-on-error: true
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database: POSTGRESQL
+    show-sql: true
+    format_sql: true
+    hibernate:
+      ddl-auto: update
+      properties:
+        hibernate:
+          show_sql: true
+          format_sql: true
+  cache.type: redis
+  data:
+    redis:
+      port: 6379
+      host: ${REDIS_HOST}
+      default-manager:
+        ttl-in-minutes: 60
+
+management:
+  otlp:
+    metrics:
+      export:
+        url: http://${app-account-challenger.otel-host}:4318/v1/metrics
+        step: 10s
+    tracing:
+      endpoint: http://${app-account-challenger.otel-host}:4318/v1/traces
+  tracing:
+    sampling:
+      probability: 1.0
+  metrics:
+    distribution:
+      percentiles:
+        do.sleep.method.timed: 0.99, 0.95, 0.9, 0.7, 0.5
+        http.server.requests: 0.99, 0.95, 0.9, 0.7, 0.5
+      percentiles-histogram:
+        do.sleep.method.timed: true
+        http.server.requests: true
+      minimum-expected-value:
+        do.sleep.method.timed: 100ms
+        http.server.requests: 100ms
+      maximum-expected-value:
+        do.sleep.method.timed: 10s
+        http.server.requests: 10s
+      slo:
+        do.sleep.method.timed: 300ms,500ms,1s,2s
+        http.server.requests: 300ms,500ms,1s,2s
+
+app-account-challenger:
+  openapi:
+    dev-url: http://localhost:8080
+    prod-url: http://localhost:8080
+  otel-host: ${OTEL_COLLECTOR_HOST}
+  otel-uri: http://${app-account-challenger.otel-host}:4317
+  async:
+    default:
+      thread-max-core-pool-size: 4
+      max-pool-size: 4
+      queue-capacity: 500

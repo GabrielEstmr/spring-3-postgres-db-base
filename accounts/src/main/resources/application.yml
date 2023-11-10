@@ -1,0 +1,15 @@
+info:
+  build:
+    version: '@project.version@'
+    name: '@project.name@'
+  app:
+    encoding: '@project.build.sourceEncoding@'
+    java:
+      source: '@java.version@'
+      target: '@java.version@'
+
+spring:
+  profiles.active: hmg
+  application:
+    name: app-account-challenger
+    description: app-account-challenger

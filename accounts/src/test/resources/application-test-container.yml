@@ -1,0 +1,49 @@
+logging:
+  level:
+    root: 'INFO'
+    com.challenger: 'DEBUG'
+    org.springframework.data.mongodb.core.MongoTemplate: 'DEBUG'
+
+spring:
+  datasource:
+    platform: postgres
+    url: ${POSTGRES_URI}
+    name: app_account_challenger
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+    continue-on-error: true
+  sql:
+    init:
+      mode: always
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database: POSTGRESQL
+    show-sql: true
+    format_sql: true
+    hibernate:
+      ddl-auto: update
+      properties:
+        hibernate:
+          show_sql: true
+          format_sql: true
+  cache.type: redis
+  data:
+    redis:
+      port: ${REDIS_PORT}
+      host: ${REDIS_HOST}
+      default-manager:
+        ttl-in-minutes: 60
+
+app-account-challenger:
+  openapi:
+    dev-url: http://localhost:8080
+    prod-url: http://localhost:8080
+  async:
+    default:
+      thread-max-core-pool-size: 4
+      max-pool-size: 4
+      queue-capacity: 500

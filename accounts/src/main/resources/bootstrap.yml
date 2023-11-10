@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: hmg
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: hmg
