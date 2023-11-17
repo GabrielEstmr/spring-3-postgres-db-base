@@ -1,25 +1,25 @@
 version: "3.9"
 services:
 
-  app-account-challenger:
-#    container_name: app-account-challenger
-    build:
-      context: ./accounts
-      dockerfile: Dockerfile
-    restart: always
-    environment:
-      POSTGRES_HOST: postgres
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      REDIS_HOST: redis
-      OTEL_COLLECTOR_HOST: otel-collector
-    ports:
-      - "8080:8080"
-    depends_on:
-      - postgres
-      - redis
-    networks:
-      - broker-kafka
+#  app-account-challenger:
+##    container_name: app-account-challenger
+#    build:
+#      context: ./accounts
+#      dockerfile: Dockerfile
+#    restart: always
+#    environment:
+#      POSTGRES_HOST: postgres
+#      POSTGRES_USER: admin
+#      POSTGRES_PASSWORD: admin
+#      REDIS_HOST: redis
+#      OTEL_COLLECTOR_HOST: otel-collector
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - postgres
+#      - redis
+#    networks:
+#      - broker-kafka
 
   otel-collector:
     image: otel/opentelemetry-collector-contrib:0.82.0

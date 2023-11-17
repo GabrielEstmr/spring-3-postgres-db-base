@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -12,15 +12,15 @@
 	<artifactId>accounts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>accounts</name>
-	<description>Test for Prismo Interview</description>
+	<description>Test for Pismo Interview</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- General Dependencies Version-->
 		<spring-cloud.version>2021.0.4</spring-cloud.version>
-		<lombok.version>1.18.24</lombok.version>
+		<lombok.version>1.18.30</lombok.version>
 		<redisson.version>3.17.7</redisson.version>
 
 		<!-- Documentation-->
@@ -36,15 +36,8 @@
 		<org.testcontainers.postgresql>1.19.1</org.testcontainers.postgresql>
 
 		<!-- Plugins Version-->
-		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+		<jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
 		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-
-		<!-- Apm -->
-		<opentelemetry.version>1.29.0</opentelemetry.version>
-		<opentelemetry-alpha.version>1.29.0-alpha</opentelemetry-alpha.version>
-		<micrometer-registry-otlp.version>1.11.5</micrometer-registry-otlp.version>
-		<micrometer-registry-prometheus.version>1.11.5</micrometer-registry-prometheus.version>
-		<micrometer-tracing-bridge-otel.version>1.1.6</micrometer-tracing-bridge-otel.version>
 
 		<!-- Sonar -->
 		<sonar.sources>src/main/java</sonar.sources>
@@ -135,7 +128,8 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -215,104 +209,28 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>io.opentelemetry</groupId>
-			<artifactId>opentelemetry-api</artifactId>
-			<version>${opentelemetry.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.opentelemetry</groupId>
-			<artifactId>opentelemetry-context</artifactId>
-			<version>${opentelemetry.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.opentelemetry</groupId>
-			<artifactId>opentelemetry-sdk</artifactId>
-			<version>${opentelemetry.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.opentelemetry</groupId>
-			<artifactId>opentelemetry-sdk-trace</artifactId>
-			<version>${opentelemetry.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.opentelemetry</groupId>
-			<artifactId>opentelemetry-sdk-metrics</artifactId>
-			<version>${opentelemetry.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.opentelemetry</groupId>
-			<artifactId>opentelemetry-sdk-common</artifactId>
-			<version>${opentelemetry.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.opentelemetry</groupId>
-			<artifactId>opentelemetry-sdk-extension-autoconfigure-spi</artifactId>
-			<version>${opentelemetry.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.opentelemetry</groupId>
-			<artifactId>opentelemetry-extension-trace-propagators</artifactId>
-			<version>${opentelemetry.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.opentelemetry</groupId>
-			<artifactId>opentelemetry-exporter-common</artifactId>
-			<version>${opentelemetry.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.opentelemetry</groupId>
-			<artifactId>opentelemetry-exporter-otlp</artifactId>
-			<version>${opentelemetry.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.opentelemetry</groupId>
-			<artifactId>opentelemetry-exporter-otlp-common</artifactId>
-			<version>${opentelemetry.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.opentelemetry.instrumentation</groupId>
-			<artifactId>opentelemetry-instrumentation-api-semconv</artifactId>
-			<version>${opentelemetry-alpha.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.opentelemetry.instrumentation</groupId>
-			<artifactId>opentelemetry-logback-appender-1.0</artifactId>
-			<version>${opentelemetry-alpha.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-otlp</artifactId>
-			<version>${micrometer-registry-otlp.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-prometheus</artifactId>
-			<version>${micrometer-registry-prometheus.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-tracing-bridge-otel</artifactId>
-			<version>${micrometer-tracing-bridge-otel.version}</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.graalvm.buildtools</groupId>
+				<artifactId>native-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<builder>paketobuildpacks/builder-jammy-tiny:latest</builder>
+					</image>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
