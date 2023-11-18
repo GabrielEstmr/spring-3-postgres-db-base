@@ -1,6 +1,6 @@
 ## TODOS:
 
-- [ ] ContainerTest Native Spring
+- [X] ContainerTest Native Spring
 - [ ] Redis
 - [ ] Redisson Locking
 - [ ] Kafka
