@@ -33,6 +33,8 @@ spring:
     redis:
       port: 6379
       host: localhost
+      repositories:
+        enabled: true
       default-manager:
         ttl-in-minutes: 60
 app-account-challenger:

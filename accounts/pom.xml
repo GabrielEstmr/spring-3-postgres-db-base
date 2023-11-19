@@ -21,7 +21,10 @@
 		<!-- General Dependencies Version-->
 		<spring-cloud.version>2021.0.4</spring-cloud.version>
 		<lombok.version>1.18.30</lombok.version>
-		<redisson.version>3.17.7</redisson.version>
+
+<!--		&lt;!&ndash; Caching&ndash;&gt;-->
+<!--		<redisson.version>3.17.7</redisson.version>-->
+<!--		<jedis.version>5.0.2</jedis.version>-->
 
 		<!-- Documentation-->
 		<springdoc-openapi-starter-webmvc-ui.version>2.2.0</springdoc-openapi-starter-webmvc-ui.version>
@@ -178,14 +181,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-cache</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.redisson</groupId>-->
+<!--			<artifactId>redisson-spring-boot-starter</artifactId>-->
+<!--			<version>${redisson.version}</version>-->
+<!--		</dependency>-->
+
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-cache</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.redisson</groupId>
-			<artifactId>redisson-spring-boot-starter</artifactId>
-			<version>${redisson.version}</version>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>4.4.6</version>
 		</dependency>
 
 		<!-- Fixture Factory -->

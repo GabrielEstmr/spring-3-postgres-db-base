@@ -24,12 +24,14 @@ public class AccountDatabaseGatewayImpl implements AccountDatabaseGateway {
             value = {
               "app-account-challenger:AccountDatabaseGatewayImpl:findById",
             },
-            key = "'id:' + #account.id", cacheManager = "defaultCacheManager"),
+            key = "'id:' + #account.id",
+            cacheManager = "defaultCacheManager"),
         @CacheEvict(
             value = {
               "app-account-challenger:AccountDatabaseGatewayImpl:findByDocumentNumber",
             },
-            key = "'documentNumber:' + #account.documentNumber", cacheManager = "defaultCacheManager")
+            key = "'documentNumber:' + #account.documentNumber",
+            cacheManager = "defaultCacheManager")
       })
   @Override
   public Account save(final Account account) {
@@ -40,7 +42,8 @@ public class AccountDatabaseGatewayImpl implements AccountDatabaseGateway {
       value = {
         "app-account-challenger:AccountDatabaseGatewayImpl:findById",
       },
-      key = "'id:' + #id", cacheManager = "defaultCacheManager")
+      key = "'id:' + #id",
+      cacheManager = "defaultCacheManager")
   @Override
   public Optional<Account> findById(final Long id) {
     return accountRepository.findById(id).map(AccountDocument::toDomain);
@@ -50,7 +53,8 @@ public class AccountDatabaseGatewayImpl implements AccountDatabaseGateway {
       value = {
         "app-account-challenger:AccountDatabaseGatewayImpl:findByDocumentNumber",
       },
-      key = "'documentNumber:' + #documentNumber", cacheManager = "defaultCacheManager")
+      key = "'documentNumber:' + #documentNumber",
+      cacheManager = "defaultCacheManager")
   @Override
   public Optional<Account> findByDocumentNumber(final String documentNumber) {
     return accountRepository.findByDocumentNumber(documentNumber).map(AccountDocument::toDomain);
