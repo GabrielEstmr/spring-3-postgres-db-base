@@ -1,9 +1,9 @@
 ## TODOS:
 
 - [X] ContainerTest Native Spring
-- [ ] Redis
-- [ ] Redisson Locking
-- [ ] Kafka
+- [X] Redis
+- [X] Redis Locking
+- [X] Kafka
 - [ ] RabbitMQ
 - [ ] MongoDB with transactions
 - [ ] MongoDB Pessimistic Locking and Optimistc Locking

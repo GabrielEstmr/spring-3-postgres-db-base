@@ -35,9 +35,34 @@ spring:
     redis:
       port: ${REDIS_PORT}
       host: ${REDIS_HOST}
+      lettuce:
+        shutdown-timeout: 200ms
+      repositories:
+        enabled: true
       default-manager:
         ttl-in-minutes: 60
-
+      locking:
+        ttl-in-minutes: 15
+  kafka:
+    default-config:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+      listener:
+        concurrency: 1
+      consumer:
+        bootstrap-servers: ${spring.kafka.default-config.bootstrap-servers}
+        group-id: mp-customer-service
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        auto-offset-reset: earliest
+        max-poll-records: 5
+        session-timeout-ms: 60000
+        max-poll-interval-ms: 250000
+        max-retries: 20
+      producer:
+        bootstrap-servers: ${spring.kafka.default-config.bootstrap-servers}
+        retries: 10
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.apache.kafka.common.serialization.StringSerializer
 app-account-challenger:
   openapi:
     dev-url: http://localhost:8080
