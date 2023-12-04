@@ -11,3 +11,6 @@
 - [ ] Review HATEOAS
 - [ ] JAVA AND SPRING NEW FEATURES
 - [ ] Review Error Response
+
+
+https://medium.com/@egorponomarev/spring-boot-3-2-with-virtual-threads-and-graalvm-out-of-the-box-1911d3ebf0b6
