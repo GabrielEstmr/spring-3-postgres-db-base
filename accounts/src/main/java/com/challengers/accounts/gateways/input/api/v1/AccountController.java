@@ -6,6 +6,8 @@ import com.challengers.accounts.gateways.input.api.v1.resources.AccountResponse;
 import com.challengers.accounts.gateways.input.api.v1.resources.CreateAccountRequest;
 import com.challengers.accounts.usecases.CreateAccount;
 import com.challengers.accounts.usecases.FindAccount;
+import com.challengers.accounts.usecases.TestVirtualThreadsCallExplicit;
+import com.challengers.accounts.usecases.TestVirtualThreadsUsingAsyncAnnotation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -19,8 +21,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+import org.springframework.web.client.RestClient;
+
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 
 @Slf4j
 @Validated
@@ -35,6 +40,8 @@ public class AccountController {
   private final CreateAccount createAccount;
   private final FindAccount findAccount;
   private final BuildLinks<AccountResponse> accountResponseLinkBuilder;
+  private final TestVirtualThreadsCallExplicit testVirtualThreadsCallExplicit;
+  private final TestVirtualThreadsUsingAsyncAnnotation testVirtualThreadsUsingAsyncAnnotation;
 
   @Operation(summary = "Creates a new account")
   @ApiResponse(responseCode = "201", description = StatusCodeConstants.HTTP_201_MSG)

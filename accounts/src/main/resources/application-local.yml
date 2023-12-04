@@ -5,6 +5,9 @@ logging:
     org.springframework.data.mongodb.core.MongoTemplate: 'DEBUG'
 
 spring:
+  threads:
+    virtual:
+      enabled: true
   datasource:
     platform: postgres
     postgres-host: localhost
