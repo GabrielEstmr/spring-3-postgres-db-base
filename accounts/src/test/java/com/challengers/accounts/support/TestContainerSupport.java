@@ -24,6 +24,7 @@ public class TestContainerSupport extends TestSupport {
 
   public static final PostgresContainer POSTGRES_DB_CONTAINER;
   public static final RedisContainer REDIS_CONTAINER;
+  public static final KafkaBrokerContainer KAFKA_CONTAINER;
   public static final GenericContainer<HttpMockContainer> HTTP_MOCK_CONTAINER;
 
   protected static final String TRANSACTION_CONTROLLER_REQUEST_RESOURCE_DIR =
@@ -42,6 +43,8 @@ public class TestContainerSupport extends TestSupport {
     REDIS_CONTAINER.start();
     HTTP_MOCK_CONTAINER = HttpMockContainer.getInstance();
     HTTP_MOCK_CONTAINER.start();
+    KAFKA_CONTAINER = KafkaBrokerContainer.getInstance();
+    KAFKA_CONTAINER.start();
   }
 
   protected void await(final Long millis) {

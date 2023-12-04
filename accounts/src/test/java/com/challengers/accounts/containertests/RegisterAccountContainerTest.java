@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RegisterAccountContainerTest extends TestContainerSupport {
 
-  private static final String MSG_ERROR_ACCOUNT_DOC_NOT_FOUND = "AccountDocument not found";
+  private static final String MSG_ERROR_ACCOUNT_DOC_NOT_FOUND = "AccountCacheDocument not found";
   private static final String ACCOUNT_PATH = "/api/v1/accounts";
 
   private static final String REQUEST_DOCUMENT_ID = "999999" + (int) (Math.random() * 50 + 1);

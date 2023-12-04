@@ -1,7 +1,6 @@
 package com.challengers.accounts.usecases;
 
 import com.challengers.accounts.domains.Account;
-import com.challengers.accounts.domains.Transaction;
 import com.challengers.accounts.domains.exceptions.ResourceNotFoundException;
 import com.challengers.accounts.gateways.output.AccountDatabaseGateway;
 import com.challengers.accounts.support.TestSupport;
