@@ -1,6 +1,7 @@
 package com.challengers.accounts.gateways.input.api.v1;
 
-import com.challengers.accounts.gateways.input.api.v1.exceptions.CustomExceptionHandler;
+import com.challengers.accounts.gateways.api.v1.CacheController;
+import com.challengers.accounts.gateways.api.v1.exceptions.CustomExceptionHandler;
 import com.challengers.accounts.support.ControllerTestSupport;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

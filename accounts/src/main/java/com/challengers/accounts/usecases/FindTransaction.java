@@ -2,7 +2,7 @@ package com.challengers.accounts.usecases;
 
 import com.challengers.accounts.domains.Transaction;
 import com.challengers.accounts.domains.exceptions.ResourceNotFoundException;
-import com.challengers.accounts.gateways.output.TransactionDatabaseGateway;
+import com.challengers.accounts.gateways.TransactionDatabaseGateway;
 import com.challengers.accounts.utils.MessageUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

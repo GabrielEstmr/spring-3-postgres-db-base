@@ -3,7 +3,7 @@ package com.challengers.accounts.usecases;
 import com.challengers.accounts.domains.Account;
 import com.challengers.accounts.domains.OperationType;
 import com.challengers.accounts.domains.Transaction;
-import com.challengers.accounts.gateways.output.TransactionDatabaseGateway;
+import com.challengers.accounts.gateways.TransactionDatabaseGateway;
 import com.challengers.accounts.support.TestSupport;
 import com.challengers.accounts.templates.FixtureTemplate;
 import org.junit.jupiter.api.Test;

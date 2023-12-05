@@ -1,7 +1,7 @@
 package com.challengers.accounts.usecases;
 
 import com.challengers.accounts.domains.exceptions.ConflictException;
-import com.challengers.accounts.gateways.output.AccountDatabaseGateway;
+import com.challengers.accounts.gateways.AccountDatabaseGateway;
 import com.challengers.accounts.utils.MessageUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,10 +1,10 @@
 spring:
   profiles:
-    active: local
+    active: hmg
 
 ---
 
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: hmg

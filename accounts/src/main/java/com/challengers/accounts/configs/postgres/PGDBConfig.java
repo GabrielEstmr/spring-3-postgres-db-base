@@ -21,8 +21,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 // @PropertySource("file:C:/springconfig/qpmlib.properties")
-@ComponentScan(basePackages = {"com.challengers.accounts.gateways.output.postgress.repositories"})
-@EnableJpaRepositories(basePackages = {"com.challengers.accounts.gateways.output.postgress.repositories"})
+@ComponentScan(basePackages = {"com.challengers.accounts.gateways.postgres.repositories"})
+@EnableJpaRepositories(basePackages = {"com.challengers.accounts.gateways.postgres.repositories"})
 @EnableTransactionManagement
 public abstract class PGDBConfig {
 

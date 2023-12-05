@@ -35,12 +35,8 @@ spring:
   data:
     redis:
       password: redispassword
-      sentinel:
-        master: mymaster
-        nodes:
-          - 127.0.0.1:26379
-          - 127.0.0.1:26380
-          - 127.0.0.1:26381
+      port: 6379
+      host: localhost
       lettuce:
         shutdown-timeout: 200ms
       repositories:
@@ -56,7 +52,7 @@ spring:
         concurrency: 1
       consumer:
         bootstrap-servers: ${spring.kafka.default-config.bootstrap-servers}
-        group-id: app-base-spring
+        group-id: mp-base-spring
         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         auto-offset-reset: earliest
@@ -71,11 +67,11 @@ spring:
         value-serializer: org.apache.kafka.common.serialization.StringSerializer
   rabbitmq:
     addresses: localhost:5672
-    username: dev_mktplace
-    password: riS9udae
-    virtualHost: dev01_mktplace
+    username: admin
+    password: admin
+    virtualHost: vHostAppBase
     process-integration:
-      time-to-live-milliseconds: 300000
+      time-to-live-milliseconds: 3000
     listener:
       concurrency: 1
       max-concurrency: 10
