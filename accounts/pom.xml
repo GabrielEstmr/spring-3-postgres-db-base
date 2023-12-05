@@ -38,6 +38,7 @@
 		<testcontainers.version>1.19.2</testcontainers.version>
 		<org.testcontainers.postgresql>1.19.2</org.testcontainers.postgresql>
 		<org.testcontainers.kafka>1.19.2</org.testcontainers.kafka>
+		<testcontainer-rabbitmq.version>1.19.2</testcontainer-rabbitmq.version>
 
 		<!-- Plugins Version-->
 		<jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
@@ -56,6 +57,7 @@
 			**/*Application.java,
 			**/configs/**,
 			**/usecases/**,
+			**/gateways/**,
 			**/postgres/**,
 			**/documents/**,
 			**/resources/**,
@@ -64,6 +66,7 @@
 			**/constants/**,
 			**/domains/**,
 			**/json/**,
+			**/utils/**,
 		</sonar.coverage.exclusions>
 		<sonar.cpd.exclusions>
 			**/configs/**,
@@ -220,6 +223,12 @@
 			<version>${org.testcontainers.kafka}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>rabbitmq</artifactId>
+			<version>${testcontainer-rabbitmq.version}</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
@@ -284,6 +293,7 @@
 										<exclude>**.configs.*</exclude>
 										<exclude>**.postgres.*</exclude>
 										<exclude>**.usecases.*</exclude>
+										<exclude>**.gateways.*</exclude>
 										<exclude>**.documents.*</exclude>
 										<exclude>**.resources.*</exclude>
 										<exclude>**.exceptions.*</exclude>
@@ -291,6 +301,7 @@
 										<exclude>**.constants.*</exclude>
 										<exclude>**.domains.*</exclude>
 										<exclude>**.json.*</exclude>
+										<exclude>**.utils.*</exclude>
 										<exclude>com.challengers.accounts.AccountsApplication</exclude>
 									</excludes>
 								</rule>

@@ -34,21 +34,32 @@ public class CacheTemplate {
 
   private final RedisProperties redisProperties;
 
+//  @Bean
+//  public LettuceConnectionFactory redisConnectionFactory() {
+//
+//    final LettuceClientConfiguration clientConfig =
+//        LettuceClientConfiguration.builder().readFrom(ReadFrom.MASTER).build();
+//
+//    final RedisSentinelConfiguration sentinelConfig =
+//        new RedisSentinelConfiguration().master(redisProperties.getSentinel().getMaster());
+//
+//    redisProperties
+//        .getSentinel()
+//        .getNodes()
+//        .forEach(s -> sentinelConfig.sentinel(s.split(":")[0], Integer.valueOf(s.split(":")[1])));
+//    sentinelConfig.setPassword(RedisPassword.of(redisProperties.getPassword()));
+//    return new LettuceConnectionFactory(sentinelConfig, clientConfig);
+//  }
+
   @Bean
   public LettuceConnectionFactory redisConnectionFactory() {
-
+    RedisStandaloneConfiguration config= new RedisStandaloneConfiguration();
+    config.setHostName(redisProperties.getHost());
+    config.setPort(redisProperties.getPort());
+    config.setPassword(redisProperties.getPassword());
     final LettuceClientConfiguration clientConfig =
-        LettuceClientConfiguration.builder().readFrom(ReadFrom.MASTER).build();
-
-    final RedisSentinelConfiguration sentinelConfig =
-        new RedisSentinelConfiguration().master(redisProperties.getSentinel().getMaster());
-
-    redisProperties
-        .getSentinel()
-        .getNodes()
-        .forEach(s -> sentinelConfig.sentinel(s.split(":")[0], Integer.valueOf(s.split(":")[1])));
-    sentinelConfig.setPassword(RedisPassword.of(redisProperties.getPassword()));
-    return new LettuceConnectionFactory(sentinelConfig, clientConfig);
+            LettuceClientConfiguration.builder().readFrom(ReadFrom.MASTER).build();
+    return new LettuceConnectionFactory(config, clientConfig);
   }
 
   @Bean

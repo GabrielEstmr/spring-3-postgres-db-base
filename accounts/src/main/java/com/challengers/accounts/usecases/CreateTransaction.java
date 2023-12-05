@@ -2,7 +2,7 @@ package com.challengers.accounts.usecases;
 
 import com.challengers.accounts.domains.OperationType;
 import com.challengers.accounts.domains.Transaction;
-import com.challengers.accounts.gateways.output.TransactionDatabaseGateway;
+import com.challengers.accounts.gateways.TransactionDatabaseGateway;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

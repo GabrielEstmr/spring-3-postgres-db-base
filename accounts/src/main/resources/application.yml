@@ -9,7 +9,7 @@ info:
       target: '@java.version@'
 
 spring:
-  profiles.active: local
+  profiles.active: hmg
   application:
     name: app-account-challenger
     description: app-account-challenger

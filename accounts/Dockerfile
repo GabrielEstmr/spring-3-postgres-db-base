@@ -1,4 +1,4 @@
-FROM openjdk:17
+FROM openjdk:21
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 #ADD https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/latest/download/opentelemetry-javaagent.jar .
