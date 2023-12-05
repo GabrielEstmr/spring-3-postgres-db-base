@@ -56,7 +56,7 @@ spring:
         concurrency: 1
       consumer:
         bootstrap-servers: ${spring.kafka.default-config.bootstrap-servers}
-        group-id: mp-customer-service
+        group-id: app-base-spring
         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         auto-offset-reset: earliest
@@ -69,6 +69,16 @@ spring:
         retries: 10
         key-serializer: org.apache.kafka.common.serialization.StringSerializer
         value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  rabbitmq:
+    addresses: localhost:5672
+    username: dev_mktplace
+    password: riS9udae
+    virtualHost: dev01_mktplace
+    process-integration:
+      time-to-live-milliseconds: 300000
+    listener:
+      concurrency: 1
+      max-concurrency: 10
 app-account-challenger:
   openapi:
     dev-url: http://localhost:8080

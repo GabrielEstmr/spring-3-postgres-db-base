@@ -124,6 +124,19 @@ services:
     networks:
       - broker-kafka
 
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "dev_mktplace"
+      RABBITMQ_DEFAULT_PASS: "riS9udae"
+      RABBITMQ_DEFAULT_VHOST: "dev01_mktplace"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - broker-kafka
+
 
   postgres:
     image: postgres:16
