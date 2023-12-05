@@ -53,7 +53,7 @@ spring:
         concurrency: 1
       consumer:
         bootstrap-servers: ${spring.kafka.default-config.bootstrap-servers}
-        group-id: mp-customer-service
+        group-id: app-base-spring
         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         auto-offset-reset: earliest
