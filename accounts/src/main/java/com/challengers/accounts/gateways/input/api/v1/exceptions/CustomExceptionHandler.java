@@ -32,7 +32,7 @@ public class CustomExceptionHandler {
   @ResponseBody
   public ErrorMessage handleBadRequestException(final BadRequestException ex) {
     log.error(ex.getLocalizedMessage(), ex);
-    return new ErrorMessage(ex.getMessage());
+    return new ErrorMessage(HttpStatus.BAD_REQUEST.getReasonPhrase(), ex.getMessage());
   }
 
   @ExceptionHandler({ResourceNotFoundException.class})
@@ -40,7 +40,7 @@ public class CustomExceptionHandler {
   @ResponseBody
   public ErrorMessage handleResourceNotFoundException(final ResourceNotFoundException ex) {
     log.error(ex.getLocalizedMessage(), ex);
-    return new ErrorMessage(ex.getMessage());
+    return new ErrorMessage(HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage());
   }
 
   @ExceptionHandler({ConflictException.class})
@@ -48,7 +48,7 @@ public class CustomExceptionHandler {
   @ResponseBody
   public ErrorMessage handleConflictException(final ConflictException ex) {
     log.error(ex.getLocalizedMessage(), ex);
-    return new ErrorMessage(ex.getMessage());
+    return new ErrorMessage(HttpStatus.CONFLICT.getReasonPhrase(), ex.getMessage());
   }
 
   @ExceptionHandler({InternalServerErrorException.class})
@@ -56,7 +56,7 @@ public class CustomExceptionHandler {
   @ResponseBody
   public ErrorMessage handleInternalServerErrorException(final InternalServerErrorException ex) {
     log.error(ex.getLocalizedMessage(), ex);
-    return new ErrorMessage(ex.getMessage());
+    return new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), ex.getMessage());
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -68,7 +68,7 @@ public class CustomExceptionHandler {
     final BindingResult bindingResult = ex.getBindingResult();
     final List<FieldError> fieldErrors = bindingResult.getFieldErrors();
     final List<String> messages = processFieldErrors(fieldErrors);
-    return new ErrorMessage(messages);
+    return new ErrorMessage(HttpStatus.BAD_GATEWAY.getReasonPhrase(), messages);
   }
 
   private List<String> processFieldErrors(final List<FieldError> fieldErrors) {
