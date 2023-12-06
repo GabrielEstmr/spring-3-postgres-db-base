@@ -21,6 +21,7 @@
 		<!-- General Dependencies Version-->
 		<spring-cloud.version>2021.0.4</spring-cloud.version>
 		<lombok.version>1.18.30</lombok.version>
+		<ff4j.version>2.0.0</ff4j.version>
 
 		<!-- Caching-->
 		<redisson.version>3.24.3</redisson.version>
@@ -150,6 +151,12 @@
 			<version>${spring-integration-redis.version}</version>
 		</dependency>
 
+		<!-- MongoDB -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+
 		<!-- Methods Validator -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -195,6 +202,39 @@
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-database-postgresql</artifactId>
 			<version>${flyway-database-postgresql.version}</version>
+		</dependency>
+
+		<!-- Ff4j -->
+		<dependency>
+			<groupId>org.ff4j</groupId>
+			<artifactId>ff4j-core</artifactId>
+			<version>${ff4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ff4j</groupId>
+			<artifactId>ff4j-web</artifactId>
+			<version>${ff4j.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.ff4j</groupId>
+			<artifactId>ff4j-store-mongodb</artifactId>
+			<version>${ff4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ff4j</groupId>
+			<artifactId>ff4j-aop</artifactId>
+			<version>${ff4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ff4j</groupId>
+			<artifactId>ff4j-store-redis</artifactId>
+			<version>${ff4j.version}</version>
 		</dependency>
 
 		<!-- Fixture Factory -->

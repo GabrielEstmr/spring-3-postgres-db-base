@@ -38,8 +38,6 @@ public class AccountController {
   private final CreateAccount createAccount;
   private final FindAccount findAccount;
   private final BuildLinks<AccountResponse> accountResponseLinkBuilder;
-  private final TestVirtualThreadsCallExplicit testVirtualThreadsCallExplicit;
-  private final TestVirtualThreadsUsingAsyncAnnotation testVirtualThreadsUsingAsyncAnnotation;
 
   @Operation(summary = "Creates a new account")
   @ApiResponse(responseCode = "201", description = StatusCodeConstants.HTTP_201_MSG)

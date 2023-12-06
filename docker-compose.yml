@@ -1,42 +1,43 @@
 version: "3.9"
 services:
 
-  app-account-challenger:
-    build:
-      context: ./accounts
-      dockerfile: Dockerfile
-    restart: always
-    environment:
-      POSTGRES_HOST: postgres
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      REDIS_PASSWORD: redispassword
-      REDIS_HOST: redis-master
-      KAFKA_HOST: kafka
-      RABBITMQ_HOST: rabbitmq
-      RABBITMQ_USER: admin
-      RABBITMQ_PASSWORD: admin
-      RABBITMQ_VHOST: vHostAppBase
-    ports:
-      - "8080:8080"
-    depends_on:
-      - postgres
-      - redis-master
-      - redis-slave
-      - redis-sentinel-1
-      - redis-sentinel-2
-      - redis-sentinel-3
-      - zookeeper1
-      - kafka
-      - rabbitmq
-    networks:
-      - broker-kafka
+#  app-account-challenger:
+#    build:
+#      context: ./accounts
+#      dockerfile: Dockerfile
+#    restart: always
+#    environment:
+#      POSTGRES_HOST: postgres
+#      POSTGRES_USER: admin
+#      POSTGRES_PASSWORD: admin
+#      REDIS_PASSWORD: redispassword
+#      REDIS_HOST: redis-master
+#      KAFKA_HOST: kafka
+#      RABBITMQ_HOST: rabbitmq
+#      RABBITMQ_USER: admin
+#      RABBITMQ_PASSWORD: admin
+#      RABBITMQ_VHOST: vHostAppBase
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - postgres
+#      - redis-master
+#      - redis-slave
+#      - redis-sentinel-1
+#      - redis-sentinel-2
+#      - redis-sentinel-3
+#      - zookeeper1
+#      - kafka
+#      - rabbitmq
+#    networks:
+#      - broker-kafka
   redis-master:
     container_name: redis-master
     image: 'bitnami/redis:latest'
     environment:
       - REDIS_REPLICATION_MODE=master
-      - REDIS_PASSWORD=redispassword
+      - ALLOW_EMPTY_PASSWORD=yes
+#      - REDIS_PASSWORD=redispassword
     ports:
       - "6379:6379"
     networks:
@@ -46,9 +47,10 @@ services:
     image: 'bitnami/redis:latest'
     environment:
       - REDIS_REPLICATION_MODE=slave
+      - ALLOW_EMPTY_PASSWORD=yes
       - REDIS_MASTER_HOST=redis-master
-      - REDIS_MASTER_PASSWORD=redispassword
-      - REDIS_PASSWORD=redispassword
+#      - REDIS_MASTER_PASSWORD=redispassword
+#      - REDIS_PASSWORD=redispassword
     ports:
       - "7000:6379"
     depends_on:
@@ -61,7 +63,7 @@ services:
     environment:
       - REDIS_MASTER_SET=mymaster
       - REDIS_MASTER_HOST=127.0.0.1
-      - REDIS_MASTER_PASSWORD=redispassword
+#      - REDIS_MASTER_PASSWORD=redispassword
       - REDIS_SENTINEL_DOWN_AFTER_MILLISECONDS=10000
     depends_on:
       - redis-master
@@ -76,7 +78,7 @@ services:
     environment:
       - REDIS_MASTER_SET=mymaster
       - REDIS_MASTER_HOST=127.0.0.1
-      - REDIS_MASTER_PASSWORD=redispassword
+#      - REDIS_MASTER_PASSWORD=redispassword
       - REDIS_SENTINEL_DOWN_AFTER_MILLISECONDS=10000
     depends_on:
       - redis-master
@@ -91,7 +93,7 @@ services:
     environment:
       - REDIS_MASTER_SET=mymaster
       - REDIS_MASTER_HOST=127.0.0.1
-      - REDIS_MASTER_PASSWORD=redispassword
+#      - REDIS_MASTER_PASSWORD=redispassword
       - REDIS_SENTINEL_DOWN_AFTER_MILLISECONDS=10000
     depends_on:
       - redis-master
@@ -100,6 +102,17 @@ services:
       - "26381:26379"
     networks:
       - broker-kafka
+#
+#
+#  redis:
+#    image: "redis:alpine"
+#    ports:
+#      - 6379:6379
+#    networks:
+#      - broker-kafka
+#    environment:
+#      - REDIS_PASSWORD=redispassword
+#      - REDIS_USERNAME=redispassword
   zookeeper1:
     image: confluentinc/cp-zookeeper:7.5.1
     container_name: zookeeper1
@@ -126,8 +139,8 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,OUTSIDE:PLAINTEXT
       KAFKA_LISTENERS: INTERNAL://:29092,OUTSIDE://:9093
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,OUTSIDE://kafka:9093 #to run in prd/hmg
-#      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,OUTSIDE://localhost:9093 #to run local
+#      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,OUTSIDE://kafka:9093 #to run in prd/hmg
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,OUTSIDE://localhost:9093 #to run local
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       # KAFKA_LOG_DIRS: /var/lib/kafka/logs
@@ -158,6 +171,19 @@ services:
       - 5432:5432
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+
+  mongo:
+    image: mongo:latest
+    # command: --wiredTigerCacheSizeGB 0.25 --replSet s0
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_INITDB_DATABASE=mongodb
+#      - MONGO_INITDB_ROOT_USERNAME=admin
+#      - MONGO_INITDB_ROOT_PASSWORD=admin
+    ports:
+      - 27017:27017
+    networks:
+      - broker-kafka
 
 networks:
   broker-kafka:

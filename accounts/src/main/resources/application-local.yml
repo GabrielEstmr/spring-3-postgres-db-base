@@ -33,6 +33,8 @@ spring:
           format_sql: true
   cache.type: redis
   data:
+    mongodb:
+      uri: mongodb://localhost:27017/app-base-spring
     redis:
       password: redispassword
       port: 6379
@@ -45,6 +47,8 @@ spring:
         ttl-in-minutes: 60
       locking:
         ttl-in-minutes: 15
+      ff4j:
+        ttl-in-minutes: 60
   kafka:
     default-config:
       bootstrap-servers: localhost:9093
