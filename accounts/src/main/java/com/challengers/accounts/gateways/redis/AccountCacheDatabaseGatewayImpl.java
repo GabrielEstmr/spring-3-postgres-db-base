@@ -31,4 +31,9 @@ public class AccountCacheDatabaseGatewayImpl implements AccountCacheDatabaseGate
         .findByDocumentNumber(documentNumber)
         .map(AccountCacheDocument::toDomain);
   }
+
+  @Override
+  public void deleteAll() {
+    accountCacheRepository.deleteAll();
+  }
 }

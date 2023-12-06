@@ -10,4 +10,6 @@ public interface AccountCacheDatabaseGateway {
     Optional<Account> findById(Long id);
 
     Optional<Account> findByDocumentNumber(String documentNumber);
+
+    void deleteAll();
 }
